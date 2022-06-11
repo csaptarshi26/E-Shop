@@ -15,7 +15,7 @@ import Message from '../components/Message';
 const CartScreen = () => {
   const params = useParams();
   const dispatch = useDispatch();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
   const productId = params.id;
