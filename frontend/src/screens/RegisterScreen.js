@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Button, Col, Form, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { register } from '../actions/userActions';
 import { FormContainer } from '../components/FormContainer';
-import { Button, Form, Row, Col } from 'react-bootstrap';
-import { login, register } from '../actions/userActions';
+import { Loader } from '../components/Loader';
 import Message from '../components/Message';
-import { Loader } from '../components/Loader'
 
 const RegisterScreen = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,6 @@ const RegisterScreen = () => {
   const [message, setMessage] = useState(null);
 
   useEffect(() => {
-    console.log(redirect)
     if (userInfo) {
       navigate(redirect)
     }

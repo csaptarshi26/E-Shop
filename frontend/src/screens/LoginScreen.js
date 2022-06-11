@@ -19,7 +19,6 @@ const LoginScreen = () => {
   const [password, setPassword] = useState('');
 
   useEffect(() => {
-    console.log(redirect)
     if (userInfo) {
       navigate(redirect)
     }
