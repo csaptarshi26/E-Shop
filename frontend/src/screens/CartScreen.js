@@ -78,7 +78,7 @@ const CartScreen = () => {
           <ListGroup variant='flush'>
             <ListGroupItem>
               <h2>Subtotal ({cartItems.reduce((acc, cur)=> acc + Number(cur.qty),0) }) items </h2>
-              ${cartItems.reduce((acc,cur) => acc + cur.qty * cur.price,0).toFixed(2)}
+              ₹{cartItems.reduce((acc,cur) => acc + cur.qty * cur.price,0).toFixed(2)}
             </ListGroupItem>
             <ListGroupItem>
               <Button type='button' className='btn-clock' disabled={cartItems.length ===0}

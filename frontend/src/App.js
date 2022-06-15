@@ -11,6 +11,7 @@ import ProfileScreen from './screens/ProfileScreen';
 import { ShippingScreen } from './screens/ShippingScreen';
 import { PaymentScreen } from './screens/PaymentScreen';
 import { PlaceOrderScreen } from './screens/PlaceOrderScreen';
+import { OrderScreen } from './screens/OrderScreen';
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
       <main className="py-3">
         <Container>
           <Routes>
-            <Route path="/" element={<HomeScreen />}/>
+            <Route path="/" element={<HomeScreen />} />
             <Route path='/login' element={<LoginScreen />} />
             <Route path='/profile' element={<ProfileScreen />} />
             <Route path='/register' element={<RegisterScreen />} />
@@ -30,6 +31,7 @@ function App() {
             <Route path='/shipping' element={<ShippingScreen />} />
             <Route path='/payment' element={<PaymentScreen />} />
             <Route path='/placeorder' element={<PlaceOrderScreen />} />
+            <Route path='/order/:id' element={<OrderScreen />} />
           </Routes>
         </Container>
       </main>

@@ -9,7 +9,6 @@ import { FormContainer } from '../components/FormContainer';
 export const PaymentScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const { shippingAddress } = useSelector(state => state.cart)
   if (!shippingAddress) {
