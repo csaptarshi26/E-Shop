@@ -15,8 +15,8 @@ export const PlaceOrderScreen = () => {
 
   const { order, success, error } = useSelector(state => state.orderCreate);
 
-  const cart = useSelector(state => state.cart)
-  
+  const cart = useSelector(state => ({ ...state.cart }))
+
   cart.itemsPrice = addDecimals(cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0))
   cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 100);
   cart.taxPrice = addDecimals(Number((0.15 * cart.itemsPrice).toFixed(2)))
@@ -32,7 +32,7 @@ export const PlaceOrderScreen = () => {
     }
     // eslint-disable-next-line
   }, [navigate, success])
-  
+
   const placeOrderHandler = () => {
     dispatch(createOrder({
       orderItems: cart.cartItems,
@@ -129,7 +129,7 @@ export const PlaceOrderScreen = () => {
                   <Col>₹{cart.totalPrice}</Col>
                 </Row>
               </ListGroupItem>
-              
+
               <ListGroup.Item>
                 {error && <Message variant='danger'>{error}</Message>}
               </ListGroup.Item>
