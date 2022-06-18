@@ -6,7 +6,7 @@ import { logout } from '../actions/userActions';
 const Header = () => {
   const dispatch = useDispatch();
   const { userInfo } = useSelector(state => state.userLogin)
-  const logoutHandler =(e)=>{
+  const logoutHandler = (e) => {
     dispatch(logout())
   }
   return (
@@ -34,6 +34,13 @@ const Header = () => {
                   Sign In
                 </Nav.Link>
               )}
+              {userInfo && userInfo.isAdmin && (
+                <NavDropdown title='Admin' id="adminMenu">
+                  <Dropdown.Item as={Link} to="/admin/userList">Users</Dropdown.Item>
+                  <Dropdown.Item as={Link} to="/admin/productList">Products</Dropdown.Item>
+                  <Dropdown.Item as={Link} to="/admin/orderList">Orders</Dropdown.Item>
+                </NavDropdown>
+              ) }
             </Nav>
           </Navbar.Collapse>
         </Container>
