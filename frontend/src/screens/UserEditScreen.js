@@ -36,7 +36,7 @@ const UserEditScreen = () => {
         setisAdmin(user.isAdmin);
       }
     }
-  }, [user, dispatch, userId, successUpdate])
+  }, [user, dispatch, userId, successUpdate,navigate])
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(updateUser({
