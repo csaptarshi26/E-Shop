@@ -5,6 +5,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { createProductReview, listProductDetails } from '../actions/productActions'
 import { Loader } from '../components/Loader'
 import Message from '../components/Message'
+import Meta from '../components/Meta'
 import Rating from '../components/Rating'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 
@@ -26,12 +27,12 @@ const ProductScreen = () => {
   } = useSelector(state => state.productReviewCreate)
 
   useEffect(() => {
-    if(errorProductReview){
+    if (errorProductReview) {
       alert('Review Submitted');
       setRating(0);
       setComment('');
 
-      dispatch({type : PRODUCT_CREATE_REVIEW_RESET})
+      dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
     }
     dispatch(listProductDetails(params.id))
   }, [dispatch, params, errorProductReview])
@@ -41,9 +42,9 @@ const ProductScreen = () => {
     navigate(`/cart/${params.id}?qty=${qty}`)
   }
 
-  const submitHandler = (e) =>{
+  const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(createProductReview(params.id,{
+    dispatch(createProductReview(params.id, {
       rating,
       comment
     }))
@@ -53,6 +54,7 @@ const ProductScreen = () => {
       <Link className='btn btn- my-3' to='/'>Go Back</Link>
       {loading ? <Loader /> : error ? <Message variant='danger' > {error} </Message> : (
         <>
+          <Meta title={product.name} />
           <Row>
             <Col md={6}>
               <Image src={product.image} alt={product.name} fluid />

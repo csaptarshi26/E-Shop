@@ -37,6 +37,7 @@ const LoginScreen = () => {
         <Form.Group controlId='email'>
           <Form.Label>Email Address</Form.Label>
           <Form.Control
+            autoComplete='off'
             type='email'
             placeholder='Enter Email'
             value={email}

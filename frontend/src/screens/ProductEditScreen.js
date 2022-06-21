@@ -96,6 +96,7 @@ const ProductEditScreen = () => {
             <Form.Group controlId='email'>
               <Form.Label>Name</Form.Label>
               <Form.Control
+                autoComplete='off'
                 type='name'
                 placeholder='Enter name'
                 value={name}
@@ -109,6 +110,7 @@ const ProductEditScreen = () => {
               <Form.Label>Price</Form.Label>
               <Form.Control
                 type='number'
+                autoComplete='off'
                 placeholder='Enter Price'
                 value={price}
                 required
@@ -121,6 +123,7 @@ const ProductEditScreen = () => {
               <Form.Label>Image</Form.Label>
               <Form.Control
                 type='text'
+                autoComplete='off'
                 placeholder='Enter Image url'
                 value={image}
                 onChange={(e) => setImage(e.target.value)}>
@@ -138,6 +141,7 @@ const ProductEditScreen = () => {
               <Form.Label>Brand</Form.Label>
               <Form.Control
                 type='text'
+                autoComplete='off'
                 placeholder='Enter Brand'
                 value={brand}
                 onChange={(e) => setBrand(e.target.value)}>
@@ -149,6 +153,7 @@ const ProductEditScreen = () => {
               <Form.Label>Count in Stock</Form.Label>
               <Form.Control
                 type='number'
+                autoComplete='off'
                 placeholder='Enter Count In Stock'
                 value={countInStock}
                 onChange={(e) => setCountInStock(e.target.value)}>
@@ -160,6 +165,7 @@ const ProductEditScreen = () => {
               <Form.Label>Category</Form.Label>
               <Form.Control
                 type='text'
+                autoComplete='off'
                 placeholder='Enter Category'
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}>
@@ -171,6 +177,7 @@ const ProductEditScreen = () => {
               <Form.Label>Description</Form.Label>
               <Form.Control
                 type='text'
+                autoComplete='off'
                 placeholder='Enter Description'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}>

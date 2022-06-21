@@ -60,6 +60,7 @@ const UserEditScreen = () => {
               <Form.Label>Name</Form.Label>
               <Form.Control
                 type='name'
+                autoComplete='off'
                 placeholder='Enter name'
                 value={name}
                 required
@@ -72,6 +73,7 @@ const UserEditScreen = () => {
               <Form.Label>Email Address</Form.Label>
               <Form.Control
                 type='email'
+                autoComplete='off'
                 placeholder='Enter Email'
                 value={email}
                 required
