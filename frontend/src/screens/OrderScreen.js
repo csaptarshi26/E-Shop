@@ -4,10 +4,10 @@ import { Button, Card, Col, Image, ListGroup, ListGroupItem, Row } from 'react-b
 import { PayPalButton } from "react-paypal-button-v2";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { deliverOrder, getOrderDetails, payOrder } from '../actions/orderActions';
+import { deliverOrder, getOrderDetails, payOrder } from '../store/actions/orderActions';
 import { Loader } from '../components/Loader';
 import Message from '../components/Message';
-import { ORDER_DELIVER_RESET, ORDER_PAY_RESET } from '../constants/orderConstants';
+import { ORDER_DELIVER_RESET, ORDER_PAY_RESET } from '../store/constants/orderConstants';
 
 
 export const OrderScreen = () => {

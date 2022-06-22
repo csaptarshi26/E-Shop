@@ -2,10 +2,9 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { Carousel, CarouselItem, Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { listTopProducts } from '../actions/productActions'
 import { Loader } from './Loader';
 import Message from './Message';
-
+import { listTopProducts } from '../store/actions/productActions'
 export const ProductCarousel = () => {
   const dispatch = useDispatch();
 

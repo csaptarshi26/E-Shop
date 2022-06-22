@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { listProductDetails, updateProduct } from '../actions/productActions';
+import { listProductDetails, updateProduct } from '../store/actions/productActions';
 import { FormContainer } from '../components/FormContainer';
 import { Loader } from '../components/Loader';
 import Message from '../components/Message';
-import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
+import { PRODUCT_UPDATE_RESET } from '../store/constants/productConstants';
 import axios from 'axios';
 
 const ProductEditScreen = () => {

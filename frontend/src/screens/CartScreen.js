@@ -9,7 +9,7 @@ import { Image } from 'react-bootstrap';
 import { Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate, useSearchParams, Link } from 'react-router-dom';
-import { addToCart, removeFromCart } from '../actions/cartActions';
+import { addToCart, removeFromCart } from '../store/actions/cartActions';
 import Message from '../components/Message';
 
 const CartScreen = () => {

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { register } from '../actions/userActions';
+import { register } from '../store/actions/userActions';
 import { FormContainer } from '../components/FormContainer';
 import { Loader } from '../components/Loader';
 import Message from '../components/Message';

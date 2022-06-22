@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { Button, Card, Col, Form, Image, ListGroup, ListGroupItem, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { createProductReview, listProductDetails } from '../actions/productActions'
+import { createProductReview, listProductDetails } from '../store/actions/productActions'
 import { Loader } from '../components/Loader'
 import Message from '../components/Message'
 import Meta from '../components/Meta'
 import Rating from '../components/Rating'
-import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
+import { PRODUCT_CREATE_REVIEW_RESET } from '../store/constants/productConstants'
 
 const ProductScreen = () => {
   const params = useParams();

@@ -2,8 +2,8 @@ import React from 'react';
 import { Container, Dropdown, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../actions/userActions';
-import { SearchBox } from './SearchBox';
+import { logout } from '../../store/actions/userActions';
+import {SearchBox} from '../SearchBox'
 const Header = () => {
   const dispatch = useDispatch();
   const { userInfo } = useSelector(state => state.userLogin)

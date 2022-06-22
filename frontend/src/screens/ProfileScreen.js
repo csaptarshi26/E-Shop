@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { Button, Col, Form, Row, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { listMyOrders } from '../actions/orderActions';
-import { getUserDetails, updateUserProfile } from '../actions/userActions';
+import { listMyOrders } from '../store/actions/orderActions';
+import { getUserDetails, updateUserProfile } from '../store/actions/userActions';
 import { Loader } from '../components/Loader';
 import Message from '../components/Message';
-import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
+import { USER_UPDATE_PROFILE_RESET } from '../store/constants/userConstants';
 
 const ProfileScreen = () => {
   const dispatch = useDispatch();

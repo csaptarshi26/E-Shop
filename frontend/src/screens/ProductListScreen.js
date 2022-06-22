@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Loader } from '../components/Loader';
 import Message from '../components/Message';
-import { createProduct, deleteProduct, listProducts } from '../actions/productActions';
-import { PRODUCT_CREATE_RESET } from '../constants/productConstants';
+import { createProduct, deleteProduct, listProducts } from '../store/actions/productActions';
+import { PRODUCT_CREATE_RESET } from '../store/constants/productConstants';
 import { Paginate } from '../components/Paginate';
 
 export const ProductListScreen = () => {

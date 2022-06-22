@@ -1,12 +1,20 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { FormContainer } from '../components/FormContainer';
-import { Button, Form, Row, Col } from 'react-bootstrap';
-import { login } from '../actions/userActions';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { login } from '../store/actions/userActions';
+import { InputField } from '../components/form/InputField';
+import { Loader } from '../components/Loader';
 import Message from '../components/Message';
-import { Loader } from '../components/Loader'
 
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
+
+import Button from '@mui/material/Button';
 const LoginScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -29,46 +37,69 @@ const LoginScreen = () => {
   }
 
   return (
-    <FormContainer>
-      <h1>Sign In</h1>
-      {error && <Message variant='danger'>{error} </Message> }
-      {loading && <Loader />}
-      <Form onSubmit={submitHandler}>
-        <Form.Group controlId='email'>
-          <Form.Label>Email Address</Form.Label>
-          <Form.Control
-            autoComplete='off'
-            type='email'
-            placeholder='Enter Email'
+    <Container component="main" maxWidth="sm">
+      <Box sx={{ marginTop: 5, display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+        {error && <Message variant='danger'>{error} </Message>}
+        {loading && <Loader />}
+        <Box component="form" onSubmit={submitHandler} sx={{ mt: 1 }}>
+          <InputField
+            type={"email"}
             value={email}
-            onChange={(e) => setEmail(e.target.value)}>
+            onChange={setEmail}
+            label={"Email Address"}
+            name={"email"}
+            autoFocus
+          />
 
-          </Form.Control>
-        </Form.Group>
-
-        <Form.Group controlId='password'>
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type='password'
-            placeholder='Enter Password'
+          <InputField
+            type={"password"}
             value={password}
-            onChange={(e) => setPassword(e.target.value)}>
-          </Form.Control>
-        </Form.Group>
+            onChange={setPassword}
+            label={"Password"}
+            name={"password"}
+          />
+          <Grid container>
+            <Grid item xs>
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid>
+            <Grid item>
+              New Custome? {' '}
+              <Link href="#" variant="body2"
+                onClick={() => {
+                  navigate(redirect ? `/register?redirect=${redirect}` : '/register')
+                }}>
+                Register
+              </Link>
+            </Grid>
+          </Grid>
 
-        <Button type='submit' variant='primary'>
-          Sign In
-        </Button>
-      </Form>
+          <Button
+            type="submit"
+            fullWidth
+            style={{ bgcolor: 'secondary.main' }}
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Sign In
+          </Button>
+        </Box>
 
-      <Row className='py-3'>
-        <Col>
-          New Custome? {' '}
-          <Link to={redirect ? `/register?redirect=${redirect}` : '/register'} >Register</Link>
-        </Col>
-      </Row>
-    </FormContainer>
+      </Box>
+    </Container >
   )
 }
 
 export default LoginScreen
+
+
+
+
+
