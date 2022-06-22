@@ -1,6 +1,5 @@
-import React from 'react'
-import { Pagination } from 'react-bootstrap'
-import { Link, useNavigate } from 'react-router-dom'
+import { Pagination } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 
 export const Paginate = ({ pages, page, isAdmin = false, keyword = '' }) => {

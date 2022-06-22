@@ -27,7 +27,7 @@ const ProductScreen = () => {
   } = useSelector(state => state.productReviewCreate)
 
   useEffect(() => {
-    if (errorProductReview) {
+    if (successProductReview) {
       alert('Review Submitted');
       setRating(0);
       setComment('');
@@ -35,7 +35,7 @@ const ProductScreen = () => {
       dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
     }
     dispatch(listProductDetails(params.id))
-  }, [dispatch, params, errorProductReview])
+  }, [dispatch, params, errorProductReview,successProductReview])
 
   const addTocartHandler = (event) => {
     event.preventDefault();
