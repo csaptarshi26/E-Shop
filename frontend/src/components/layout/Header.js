@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Dropdown, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/actions/userActions';
 import { SearchBox } from '../SearchBox'
@@ -8,11 +8,14 @@ import LoginDialog from '../dialog/LoginRegisterModal/LoginDialog';
 import { setModalStatus } from '../../store/actions/appActions';
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { userInfo } = useSelector(state => state.userLogin)
   const { openModal } = useSelector(state => state.app)
 
   const logoutHandler = (e) => {
     dispatch(logout())
+    navigate('/')
   }
   const signInHandler = () => {
     dispatch(setModalStatus(true))

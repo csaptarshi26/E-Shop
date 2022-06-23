@@ -12,7 +12,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Switch from '@mui/material/Switch';
-import { Grid, useMediaQuery } from '@mui/material';
+import { Grid, IconButton, useMediaQuery } from '@mui/material';
 import { useTheme } from '@emotion/react';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
@@ -20,14 +20,15 @@ import Login from './Login';
 import Register from './Register';
 import { setModalStatus } from '../../../store/actions/appActions';
 import { useDispatch } from 'react-redux';
+import CloseIcon from "@mui/icons-material/Close";
 
-export default function LoginDialog({open }) {
+export default function LoginDialog({ open }) {
   const dispatch = useDispatch();
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState('md');
   const [modalType, setModalType] = React.useState('login');
 
-  
+
   const handleClose = () => {
     dispatch(setModalStatus(false))
     setModalType('login')
@@ -43,17 +44,23 @@ export default function LoginDialog({open }) {
         fullScreen={fullScreen}
         PaperProps={!fullScreen && {
           style: {
-            height:'auto',
-            width:'65vw'
+            height: 'auto',
+            width: '65vw'
           }
         }}
         open={open}
         onClose={handleClose}
       >
         <DialogContent >
-          { modalType === 'login' ? (
-            <Login setModalType={setModalType}/>
-          ) :(
+          <IconButton
+            style={{ position: "absolute", top: "0", right: "0" }}
+            onClick={() => handleClose()}
+          >
+            <CloseIcon />
+          </IconButton>
+          {modalType === 'login' ? (
+            <Login setModalType={setModalType} />
+          ) : (
             <Register setModalType={setModalType} />
           )}
 

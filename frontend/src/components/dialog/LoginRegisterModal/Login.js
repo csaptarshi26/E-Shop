@@ -24,12 +24,13 @@ const Login = ({ setModalType }) => {
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
   const { loading, error, userInfo } = useSelector(state => state.userLogin)
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('admin@example.com');
+  const [password, setPassword] = useState('123456');
 
   useEffect(() => {
     if (userInfo) {
       dispatch(setModalStatus(false))
+      console.log(redirect);
       navigate(redirect)
     }
   }, [userInfo, redirect, navigate])

@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { addToCart, removeFromCart } from '../store/actions/cartActions';
 import Message from '../components/Message';
+import { setModalStatus } from '../store/actions/appActions';
 
 const CartScreen = () => {
   const params = useParams();
@@ -21,6 +22,7 @@ const CartScreen = () => {
   const productId = params.id;
   const qty = searchParams.get('qty');
   const { cartItems } = useSelector(state => state.cart)
+  const { loading, error, userInfo } = useSelector(state => state.userLogin)
 
 
   useEffect(() => {
@@ -33,7 +35,12 @@ const CartScreen = () => {
     dispatch(removeFromCart(id));
   }
   const checkOutHandler = () => {
-    navigate('/login?redirect=/shipping')
+    //navigate('/login?redirect=/shipping')
+    if(userInfo){
+      navigate('/shipping')
+    }else{
+      dispatch(setModalStatus(true))
+    }
   }
 
   return (
