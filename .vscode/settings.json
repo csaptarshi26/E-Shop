@@ -1,3 +1,4 @@
 {
-  "javascript.validate.enable": false
+  "javascript.validate.enable": true,
+  "security.workspace.trust.enabled": false
 }

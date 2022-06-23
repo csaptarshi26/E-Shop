@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { saveShippingAddress } from '../actions/cartActions';
+import { saveShippingAddress } from '../store/actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { FormContainer } from '../components/FormContainer';
 
@@ -10,12 +10,19 @@ export const ShippingScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { shippingAddress } = useSelector(state => state.cart)
+  const { shippingAddress } = useSelector(state => state.cart);
+  const { userInfo } = useSelector(state => state.userLogin)
 
   const [address, setAddress] = useState(shippingAddress.address);
   const [city, setCity] = useState(shippingAddress.city);
   const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
   const [country, setCountry] = useState(shippingAddress.country);
+
+  useEffect(() => {
+    if (!userInfo) {
+      navigate('/')
+    }
+  }, [userInfo])
 
   const submitHandler = (e) => {
     e.preventDefault();

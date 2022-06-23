@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { Button, Col, Form, Row, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { listMyOrders } from '../actions/orderActions';
-import { getUserDetails, updateUserProfile } from '../actions/userActions';
+import { listMyOrders } from '../store/actions/orderActions';
+import { getUserDetails, updateUserProfile } from '../store/actions/userActions';
 import { Loader } from '../components/Loader';
 import Message from '../components/Message';
-import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
+import { USER_UPDATE_PROFILE_RESET } from '../store/constants/userConstants';
 
 const ProfileScreen = () => {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const ProfileScreen = () => {
 
   useEffect(() => {
     if (!userInfo) {
-      navigate('/login')
+      navigate('/')
     } else {
       if (!user.name || success) {
         dispatch({type : USER_UPDATE_PROFILE_RESET})
@@ -52,8 +52,8 @@ const ProfileScreen = () => {
     <Row>
       <Col md={3}>
         <h2>User Profile</h2>
-        {error && <Message variant='danger'>{error} </Message>}
-        {message && <Message variant='danger'>{message} </Message>}
+        {error && <Message>{error} </Message>}
+        {message && <Message>{message} </Message>}
         {success && <Message variant='success'>Profile Updated </Message>}
         {loading && <Loader />}
         <Form onSubmit={submitHandler}>
@@ -110,7 +110,7 @@ const ProfileScreen = () => {
       </Col>
       <Col md={9}>
         <h2>My Orders</h2>
-        {loadingOrders ? <Loader /> : errorOrders ? <Message variant='danger' >{errorOrders} </Message> : (
+        {loadingOrders ? <Loader /> : errorOrders ? <Message >{errorOrders} </Message> : (
           <Table striped bordered hover responsive className='table-sm'>
             <thead>
               <tr>

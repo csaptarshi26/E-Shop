@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { listOrders } from '../actions/orderActions';
+import { listOrders } from '../store/actions/orderActions';
 import { Loader } from '../components/Loader';
 import Message from '../components/Message';
 
@@ -17,14 +17,14 @@ export const OrderListScreen = () => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listOrders())
     } else {
-      navigate('/login')
+      navigate('/')
     }
   }, [dispatch, navigate, userInfo]);
 
   return (
     <>
       <h1>Orders</h1>
-      {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
+      {loading ? <Loader /> : error ? <Message >{error}</Message> : (
         <Table striped bordered hover responsive className='table-sm'>
           <thead>
             <tr>

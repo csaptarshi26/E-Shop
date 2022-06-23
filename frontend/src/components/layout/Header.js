@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Dropdown, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../actions/userActions';
-import { SearchBox } from './SearchBox';
+import { logout } from '../../store/actions/userActions';
+import { SearchBox } from '../SearchBox'
+import LoginDialog from '../dialog/LoginRegisterModal/LoginDialog';
+import { setModalStatus } from '../../store/actions/appActions';
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { userInfo } = useSelector(state => state.userLogin)
+  const { openModal } = useSelector(state => state.app)
+
   const logoutHandler = (e) => {
     dispatch(logout())
+    navigate('/')
+  }
+  const signInHandler = () => {
+    dispatch(setModalStatus(true))
   }
   return (
     <header>
@@ -31,7 +41,7 @@ const Header = () => {
                   <Dropdown.Item onClick={logoutHandler}>Logout</Dropdown.Item>
                 </NavDropdown>
               ) : (
-                <Nav.Link as={Link} to='/login'>
+                <Nav.Link onClick={() => signInHandler()}>
                   <i className='fas fa-user px-1'></i>
                   Sign In
                 </Nav.Link>
@@ -42,11 +52,14 @@ const Header = () => {
                   <Dropdown.Item as={Link} to="/admin/productList">Products</Dropdown.Item>
                   <Dropdown.Item as={Link} to="/admin/orderList">Orders</Dropdown.Item>
                 </NavDropdown>
-              ) }
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      <LoginDialog open={openModal}>
+       
+      </LoginDialog>
     </header >
   )
 }

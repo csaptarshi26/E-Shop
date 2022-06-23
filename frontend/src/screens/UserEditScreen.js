@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { getUserDetails, updateUser } from '../actions/userActions';
+import { getUserDetails, updateUser } from '../store/actions/userActions';
 import { FormContainer } from '../components/FormContainer';
 import { Loader } from '../components/Loader';
 import Message from '../components/Message';
-import { USER_UPDATE_RESET } from '../constants/userConstants';
+import { USER_UPDATE_RESET } from '../store/constants/userConstants';
 
 const UserEditScreen = () => {
   const dispatch = useDispatch();
@@ -53,8 +53,8 @@ const UserEditScreen = () => {
       <FormContainer>
         <h1>Edit User</h1>
         {loadingUpdate && <Loader />}
-        {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
-        {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
+        {errorUpdate && <Message>{errorUpdate}</Message>}
+        {loading ? <Loader /> : error ? <Message>{error}</Message> : (
           <Form onSubmit={submitHandler}>
             <Form.Group controlId='email'>
               <Form.Label>Name</Form.Label>

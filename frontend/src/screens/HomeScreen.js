@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { listProducts } from '../actions/productActions'
+import { listProducts } from '../store/actions/productActions'
 import { Loader } from '../components/Loader'
 import Message from '../components/Message'
 import { Product } from '../components/Product'
@@ -27,7 +27,7 @@ const HomeScreen = () => {
       <h1>Latest Products</h1>
       {loading ?
         <Loader />
-        : error ? <Message variant='danger'> {error} </Message>
+        : error ? <Message > {error} </Message>
           : (
             <>
               <Row>

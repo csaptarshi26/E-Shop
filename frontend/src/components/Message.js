@@ -1,15 +1,29 @@
+import { Alert, AlertTitle } from '@mui/material'
 import React from 'react'
-import { Alert } from 'react-bootstrap'
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import ErrorIcon from '@mui/icons-material/Error';
+import InfoIcon from '@mui/icons-material/Info';
 
-const Message = ({variant,children}) => {
+const Message = ({ variant, children }) => {
+
+  const initUpperCase = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  }
   return (
-    <Alert variant={variant}>
+    <Alert severity={variant}
+      iconMapping={{
+        success: <CheckCircleOutlineIcon fontSize="inherit" />,
+        error: <ErrorIcon fontSize='inherit' />,
+        info: <InfoIcon fontSize='inherit' />,
+      }}>
+      <AlertTitle>{initUpperCase(variant)}</AlertTitle>
       {children}
     </Alert>
+
   )
 }
 Message.defaultProps = {
-  variant : 'info'
+  variant: 'error'
 }
 
 export default Message

@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { Button, Card, Col, Form, Image, ListGroup, ListGroupItem, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { createProductReview, listProductDetails } from '../actions/productActions'
+import { createProductReview, listProductDetails } from '../store/actions/productActions'
 import { Loader } from '../components/Loader'
 import Message from '../components/Message'
 import Meta from '../components/Meta'
 import Rating from '../components/Rating'
-import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
+import { PRODUCT_CREATE_REVIEW_RESET } from '../store/constants/productConstants'
 
 const ProductScreen = () => {
   const params = useParams();
@@ -52,7 +52,7 @@ const ProductScreen = () => {
   return (
     <>
       <Link className='btn btn- my-3' to='/'>Go Back</Link>
-      {loading ? <Loader /> : error ? <Message variant='danger' > {error} </Message> : (
+      {loading ? <Loader /> : error ? <Message > {error} </Message> : (
         <>
           <Meta title={product.name} />
           <Row>
@@ -135,7 +135,7 @@ const ProductScreen = () => {
 
                 <ListGroupItem>
                   <h2>Write a Customer Review</h2>
-                  {errorProductReview && <Message variant='danger'>{errorProductReview}</Message>}
+                  {errorProductReview && <Message >{errorProductReview}</Message>}
                   {userInfo ? (
                     <Form onSubmit={submitHandler}>
                       <Form.Group controlId='rating'>

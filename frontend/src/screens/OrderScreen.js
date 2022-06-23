@@ -4,10 +4,11 @@ import { Button, Card, Col, Image, ListGroup, ListGroupItem, Row } from 'react-b
 import { PayPalButton } from "react-paypal-button-v2";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { deliverOrder, getOrderDetails, payOrder } from '../actions/orderActions';
+import { deliverOrder, getOrderDetails, payOrder } from '../store/actions/orderActions';
 import { Loader } from '../components/Loader';
 import Message from '../components/Message';
-import { ORDER_DELIVER_RESET, ORDER_PAY_RESET } from '../constants/orderConstants';
+import { ORDER_DELIVER_RESET, ORDER_PAY_RESET } from '../store/constants/orderConstants';
+import { setModalStatus } from '../store/actions/appActions';
 
 
 export const OrderScreen = () => {
@@ -30,7 +31,8 @@ export const OrderScreen = () => {
 
   useEffect(() => {
     if (!userInfo) {
-      navigate('/login')
+      //navigate('/login')      
+      dispatch(setModalStatus(true))
     }
     const addPayPalScript = async () => {
       const { data: clientId } = await axios.get("/api/config/paypal");
@@ -65,7 +67,7 @@ export const OrderScreen = () => {
   const deliverHandler = () => {
     dispatch(deliverOrder(order))
   }
-  return loading ? <Loader /> : error ? <Message variant='danger'> {error} </Message> :
+  return loading ? <Loader /> : error ? <Message > {error} </Message> :
     <>
       <h1>Order {order._id}</h1>
       <Row>
@@ -87,7 +89,7 @@ export const OrderScreen = () => {
               {order.isDelivered ? (
                 <Message variant='success'>Delivered on {order.deliveredAt}</Message>
               ) : (
-                <Message variant='danger'>Not Delivered</Message>
+                <Message >Not Delivered</Message>
               )}
 
             </ListGroupItem>
@@ -101,7 +103,7 @@ export const OrderScreen = () => {
               {order.isPaid ? (
                 <Message variant='success'>Paid on {order.paidAt}</Message>
               ) : (
-                <Message variant='danger'>Not Paid</Message>
+                <Message >Not Paid</Message>
               )}
             </ListGroupItem>
 

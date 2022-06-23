@@ -2,10 +2,9 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { Carousel, CarouselItem, Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { listTopProducts } from '../actions/productActions'
 import { Loader } from './Loader';
 import Message from './Message';
-
+import { listTopProducts } from '../store/actions/productActions'
 export const ProductCarousel = () => {
   const dispatch = useDispatch();
 
@@ -14,7 +13,7 @@ export const ProductCarousel = () => {
   useEffect(() => {
     dispatch(listTopProducts())
   }, [dispatch])
-  return loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
+  return loading ? <Loader /> : error ? <Message >{error}</Message> : (
     <Carousel pause='hover' className='bg-dark'>
       {products.map(product => (
         <CarouselItem key={product._id}>

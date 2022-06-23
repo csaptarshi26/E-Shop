@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { listUsers, deleteUser } from '../actions/userActions';
+import { listUsers, deleteUser } from '../store/actions/userActions';
 import { Loader } from '../components/Loader';
 import Message from '../components/Message';
 
@@ -18,7 +18,7 @@ export const UserListScreen = () => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listUsers())
     } else {
-      navigate('/login')
+      navigate('/')
     }
   }, [dispatch, navigate, successDelete,userInfo]);
 
@@ -30,7 +30,7 @@ export const UserListScreen = () => {
   return (
     <>
       <h1>Users</h1>
-      {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
+      {loading ? <Loader /> : error ? <Message>{error}</Message> : (
         <Table striped bordered hover responsive className='table-sm'>
           <thead>
             <tr>

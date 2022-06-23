@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { listProductDetails, updateProduct } from '../actions/productActions';
+import { listProductDetails, updateProduct } from '../store/actions/productActions';
 import { FormContainer } from '../components/FormContainer';
 import { Loader } from '../components/Loader';
 import Message from '../components/Message';
-import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
+import { PRODUCT_UPDATE_RESET } from '../store/constants/productConstants';
 import axios from 'axios';
 
 const ProductEditScreen = () => {
@@ -90,8 +90,8 @@ const ProductEditScreen = () => {
       <FormContainer>
         <h1>Edit Product</h1>
         {loadingUpdate && <Loader />}
-        {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
-        {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
+        {errorUpdate && <Message >{errorUpdate}</Message>}
+        {loading ? <Loader /> : error ? <Message >{error}</Message> : (
           <Form onSubmit={submitHandler}>
             <Form.Group controlId='email'>
               <Form.Label>Name</Form.Label>

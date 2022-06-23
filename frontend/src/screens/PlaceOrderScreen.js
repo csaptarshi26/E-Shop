@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import CheckoutSteps from '../components/CheckoutSteps';
 import Message from '../components/Message';
-import { createOrder } from '../actions/orderActions';
+import { createOrder } from '../store/actions/orderActions';
 
 export const PlaceOrderScreen = () => {
   const dispatch = useDispatch();
@@ -13,7 +13,9 @@ export const PlaceOrderScreen = () => {
     return (Math.round(num * 100) / 100).toFixed(2)
   }
 
+  
   const { order, success, error } = useSelector(state => state.orderCreate);
+  const { userInfo } = useSelector(state => state.userLogin);
 
   const cart = useSelector(state => ({ ...state.cart }))
 
@@ -30,8 +32,11 @@ export const PlaceOrderScreen = () => {
     if (success) {
       navigate(`/order/${order._id}`)
     }
+    if (!userInfo) {
+      navigate('/')
+    }
     // eslint-disable-next-line
-  }, [navigate, success])
+  }, [navigate, success,userInfo])
 
   const placeOrderHandler = () => {
     dispatch(createOrder({
@@ -131,7 +136,7 @@ export const PlaceOrderScreen = () => {
               </ListGroupItem>
 
               <ListGroup.Item>
-                {error && <Message variant='danger'>{error}</Message>}
+                {error && <Message >{error}</Message>}
               </ListGroup.Item>
 
               <ListGroupItem>
