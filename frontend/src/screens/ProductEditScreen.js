@@ -90,8 +90,8 @@ const ProductEditScreen = () => {
       <FormContainer>
         <h1>Edit Product</h1>
         {loadingUpdate && <Loader />}
-        {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
-        {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
+        {errorUpdate && <Message >{errorUpdate}</Message>}
+        {loading ? <Loader /> : error ? <Message >{error}</Message> : (
           <Form onSubmit={submitHandler}>
             <Form.Group controlId='email'>
               <Form.Label>Name</Form.Label>

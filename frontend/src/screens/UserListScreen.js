@@ -30,7 +30,7 @@ export const UserListScreen = () => {
   return (
     <>
       <h1>Users</h1>
-      {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
+      {loading ? <Loader /> : error ? <Message>{error}</Message> : (
         <Table striped bordered hover responsive className='table-sm'>
           <thead>
             <tr>

@@ -65,7 +65,7 @@ export const OrderScreen = () => {
   const deliverHandler = () => {
     dispatch(deliverOrder(order))
   }
-  return loading ? <Loader /> : error ? <Message variant='danger'> {error} </Message> :
+  return loading ? <Loader /> : error ? <Message > {error} </Message> :
     <>
       <h1>Order {order._id}</h1>
       <Row>
@@ -87,7 +87,7 @@ export const OrderScreen = () => {
               {order.isDelivered ? (
                 <Message variant='success'>Delivered on {order.deliveredAt}</Message>
               ) : (
-                <Message variant='danger'>Not Delivered</Message>
+                <Message >Not Delivered</Message>
               )}
 
             </ListGroupItem>
@@ -101,7 +101,7 @@ export const OrderScreen = () => {
               {order.isPaid ? (
                 <Message variant='success'>Paid on {order.paidAt}</Message>
               ) : (
-                <Message variant='danger'>Not Paid</Message>
+                <Message >Not Paid</Message>
               )}
             </ListGroupItem>
 

@@ -13,7 +13,7 @@ export const ProductCarousel = () => {
   useEffect(() => {
     dispatch(listTopProducts())
   }, [dispatch])
-  return loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
+  return loading ? <Loader /> : error ? <Message >{error}</Message> : (
     <Carousel pause='hover' className='bg-dark'>
       {products.map(product => (
         <CarouselItem key={product._id}>

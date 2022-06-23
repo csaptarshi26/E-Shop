@@ -40,7 +40,7 @@ const Login = ({ setModalType }) => {
 
   return (
     <Container component="main" maxWidth="md">
-      <Box sx={{ marginTop: 5, display: 'column', flexDirection: 'row', alignItems: 'center', }}>
+      <Box sx={{ marginTop: 5, display: 'column', flexDirection: 'column', alignItems: 'center', }}>
         <Grid container spacing={2}>
 
           <Grid item md={5}>
@@ -54,24 +54,13 @@ const Login = ({ setModalType }) => {
               <LockOutlinedIcon />
             </Avatar>
 
-            {error && <Message variant='danger'>{error} </Message>}
+            {error && <Message>{error} </Message>}
             {loading && <Loader />}
             <Box component="form" onSubmit={submitHandler} sx={{ mt: 1 }}>
-              <InputField type={"email"} value={email} onChange={setEmail} label={"Email Address"} autoFocus/>
+              <InputField type={"email"} value={email} onChange={setEmail} label={"Email Address"} autoFocus />
 
               <InputField type={"password"} value={password} onChange={setPassword} label={"Password"} />
-              <Grid container>
-                <Grid item md>
-                  New Custome? {' '}
-                  <Link href="#" variant="body2"
-                    onClick={() => {
-                      setModalType('register')
-                    }}>
-                    Register
-                  </Link>
-                </Grid>
-              </Grid>
-
+              
               <Button
                 type="submit"
                 fullWidth
@@ -81,6 +70,15 @@ const Login = ({ setModalType }) => {
               >
                 Sign In
               </Button>
+
+              <Grid container>
+                <Grid item md>
+                  New Custome? {' '}
+                  <Link href="#" onClick={() => { setModalType('register') }}>
+                    Register
+                  </Link>
+                </Grid>
+              </Grid>
             </Box>
           </Grid>
         </Grid>

@@ -43,16 +43,14 @@ export default function LoginDialog({open }) {
         fullScreen={fullScreen}
         PaperProps={!fullScreen && {
           style: {
-            minHeight: '85vh',
-            maxHeight: '85vh',
-            minWidth: '50vw',
-            maxWidth: '70vw'
+            height:'auto',
+            width:'65vw'
           }
         }}
         open={open}
         onClose={handleClose}
       >
-        <DialogContent style={{overflowY:'hidden'}} >
+        <DialogContent >
           { modalType === 'login' ? (
             <Login setModalType={setModalType}/>
           ) :(

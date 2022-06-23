@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Col, Form, Row } from 'react-bootstrap';
 import Button from '@mui/material/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -16,6 +16,7 @@ import { Loader } from '../../Loader';
 import { InputField } from '../../form/InputField'
 import { setModalStatus } from '../../../store/actions/appActions';
 
+import Link from '@mui/material/Link';
 
 const Register = ({ setModalType }) => {
   const dispatch = useDispatch();
@@ -48,43 +49,52 @@ const Register = ({ setModalType }) => {
 
   return (
     <Container component="main" maxWidth="md">
+      <Box sx={{ marginTop: 5, display: 'column', flexDirection: 'column', alignItems: 'center', }}>
+        <Grid container spacing={2}>
 
-      <Grid container spacing={2}>
-        <Grid item xs={5}>
-          <Typography component="h1" variant="h5">
-            Sign Up
-          </Typography>
+          <Grid item md={5}>
+            <Typography component="h1" variant="h5">
+              Sign Up
+            </Typography>
+          </Grid>
+
+          <Grid item md={7}>
+            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }} style={{ margin: 'auto', marginBottom: 10 }}>
+              <LockOutlinedIcon />
+            </Avatar>
+
+            {error && <Message >{error} </Message>}
+            {message && <Message>{message} </Message>}
+            {loading && <Loader />}
+
+            <Box component="form" onSubmit={submitHandler} sx={{ mt: 1 }}>
+
+              <InputField type={"text"} value={name} onChange={setName} label={"Enter name"} autoFocus />
+
+              <InputField type={"email"} value={email} onChange={setEmail} label={"Enter Email"} />
+
+              <InputField type={"password"} value={password} onChange={setPassword} label={"Enter Password"} />
+
+              <InputField type={"password"} value={confirmPassword} onChange={setConfirmPassword} label={"Confirm Password"} />
+
+              <Button type="submit" fullWidth style={{ bgcolor: 'secondary.main' }} variant="contained" sx={{ mt: 3, mb: 2 }}>
+                Register
+              </Button>
+
+              <Grid container>
+                <Grid item md>
+                  Have an Account? {' '}
+                  <Link href="#" onClick={() => { setModalType('login') }}>
+                  Login
+                  </Link>
+                </Grid>
+              </Grid>
+
+            </Box>
+          </Grid>
         </Grid>
-
-        <Grid item xs={7}>
-          {error && <Message variant='danger'>{error} </Message>}
-          {message && <Message variant='danger'>{message} </Message>}
-          {loading && <Loader />}
-
-          <Box component="form" onSubmit={submitHandler} sx={{ mt: 1 }}>
-
-            <InputField type={"text"} value={name} onChange={setName} label={"Enter name"} autoFocus />
-
-            <InputField type={"email"} value={email} onChange={setEmail} label={"Enter Email"} />
-
-            <InputField type={"password"} value={password} onChange={setPassword} label={"Enter Password"} />
-
-            <InputField type={"password"} value={confirmPassword} onChange={setConfirmPassword} label={"Confirm Password"}/>
-
-            <Button type="submit" fullWidth style={{ bgcolor: 'secondary.main' }} variant="contained" sx={{ mt: 3, mb: 2 }}>
-              Register
-            </Button>
-
-          </Box>
-
-          <Row className='py-3'>
-            <Col onClick={() => setModalType('login')} >
-              Have an Account? {' '}Login
-            </Col>
-          </Row>
-        </Grid>
-      </Grid>
-    </Container>
+      </Box>
+    </Container >
   )
 }
 

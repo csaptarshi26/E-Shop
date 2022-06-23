@@ -52,8 +52,8 @@ const ProfileScreen = () => {
     <Row>
       <Col md={3}>
         <h2>User Profile</h2>
-        {error && <Message variant='danger'>{error} </Message>}
-        {message && <Message variant='danger'>{message} </Message>}
+        {error && <Message>{error} </Message>}
+        {message && <Message>{message} </Message>}
         {success && <Message variant='success'>Profile Updated </Message>}
         {loading && <Loader />}
         <Form onSubmit={submitHandler}>
@@ -110,7 +110,7 @@ const ProfileScreen = () => {
       </Col>
       <Col md={9}>
         <h2>My Orders</h2>
-        {loadingOrders ? <Loader /> : errorOrders ? <Message variant='danger' >{errorOrders} </Message> : (
+        {loadingOrders ? <Loader /> : errorOrders ? <Message >{errorOrders} </Message> : (
           <Table striped bordered hover responsive className='table-sm'>
             <thead>
               <tr>

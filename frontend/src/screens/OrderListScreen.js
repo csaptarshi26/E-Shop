@@ -24,7 +24,7 @@ export const OrderListScreen = () => {
   return (
     <>
       <h1>Orders</h1>
-      {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
+      {loading ? <Loader /> : error ? <Message >{error}</Message> : (
         <Table striped bordered hover responsive className='table-sm'>
           <thead>
             <tr>

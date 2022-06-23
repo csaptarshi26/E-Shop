@@ -38,9 +38,9 @@ export const ProductListScreen = () => {
     if (successCreate) {
       navigate(`/admin/product/${createdProduct._id}/edit`)
     } else {
-      dispatch(listProducts('',pageNumber))
+      dispatch(listProducts('', pageNumber))
     }
-  }, [dispatch, navigate, userInfo,pageNumber, successDelete, createdProduct, successCreate]);
+  }, [dispatch, navigate, userInfo, pageNumber, successDelete, createdProduct, successCreate]);
 
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure')) {
@@ -63,10 +63,10 @@ export const ProductListScreen = () => {
         </Col>
       </Row>
       {loadingDelete && <Loader />}
-      {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
+      {errorDelete && <Message >{errorDelete}</Message>}
       {loadingCreate && <Loader />}
-      {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
-      {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
+      {errorCreate && <Message >{errorCreate}</Message>}
+      {loading ? <Loader /> : error ? <Message >{error}</Message> : (
         <>
           <Table striped bordered hover responsive className='table-sm'>
             <thead>
@@ -103,7 +103,7 @@ export const ProductListScreen = () => {
             </tbody>
           </Table>
 
-          <Paginate pages={pages} page={page} isAdmin={true}/>
+          <Paginate pages={pages} page={page} isAdmin={true} />
         </>
       )}
     </>

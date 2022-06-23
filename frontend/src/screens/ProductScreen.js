@@ -52,7 +52,7 @@ const ProductScreen = () => {
   return (
     <>
       <Link className='btn btn- my-3' to='/'>Go Back</Link>
-      {loading ? <Loader /> : error ? <Message variant='danger' > {error} </Message> : (
+      {loading ? <Loader /> : error ? <Message > {error} </Message> : (
         <>
           <Meta title={product.name} />
           <Row>
@@ -135,7 +135,7 @@ const ProductScreen = () => {
 
                 <ListGroupItem>
                   <h2>Write a Customer Review</h2>
-                  {errorProductReview && <Message variant='danger'>{errorProductReview}</Message>}
+                  {errorProductReview && <Message >{errorProductReview}</Message>}
                   {userInfo ? (
                     <Form onSubmit={submitHandler}>
                       <Form.Group controlId='rating'>
