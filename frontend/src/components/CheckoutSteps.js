@@ -4,10 +4,7 @@ import { Link } from "react-router-dom";
 const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
   return (
     <Nav className='justify-content-center mb-4'>
-      <Nav.Item>
-        {step1 ? <Nav.Link as={Link} to='/login'>Sign In</Nav.Link> : <Nav.Link as={Link} to='#' disabled>Sign In</Nav.Link>}
-      </Nav.Item>
-
+      
       <Nav.Item>
         {step2 ? <Nav.Link as={Link} to='/shipping'>Shipping</Nav.Link> : <Nav.Link as={Link} to='#' disabled>Shipping</Nav.Link>}
       </Nav.Item>

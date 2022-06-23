@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from "redux";
+import { appReducer } from './reducers/appReducer';
 import { cartReducer } from './reducers/cartReducers';
 import { orderCreateReducer, orderDeliverReducer, orderDetailsReducer, orderListMyReducer, orderListReducer, orderPayReducer } from './reducers/orderReducers';
 import { productCreateReducer, productDeleteReducer, productDetailsReducer, productListReducer, productReviewCreateReducer, productTopRatedReducer, productUpdateReducer } from "./reducers/productReducers";
@@ -21,6 +22,7 @@ const reducer = combineReducers({
     productReviewCreate: productReviewCreateReducer,
     productTopRated: productTopRatedReducer,
 
+    app:appReducer,
     cart: cartReducer,
 
     userLogin: userLoginReducer,

@@ -1,15 +1,17 @@
+import { Alert, AlertTitle } from '@mui/material'
 import React from 'react'
-import { Alert } from 'react-bootstrap'
 
-const Message = ({variant,children}) => {
+const Message = ({ variant, children }) => {
   return (
-    <Alert variant={variant}>
-      {children}
+    <Alert severity="error">
+      <AlertTitle>Error</AlertTitle>
+      This is an error alert — <strong>check it out!</strong>
     </Alert>
+
   )
 }
 Message.defaultProps = {
-  variant : 'info'
+  variant: 'info'
 }
 
 export default Message

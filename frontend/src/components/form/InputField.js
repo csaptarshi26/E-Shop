@@ -2,7 +2,7 @@ import React from 'react'
 import TextField from '@mui/material/TextField';
 
 
-export const InputField = ({ value,type, onChange, label, name, autoFocus }) => {
+export const InputField = ({ value,type, onChange, label, autoFocus }) => {
   return (
 
     <TextField
@@ -13,7 +13,6 @@ export const InputField = ({ value,type, onChange, label, name, autoFocus }) => 
       onChange={(e) => onChange(e.target.value)}
       variant='filled'
       label={label}
-      name={name}
       autoComplete="off"
       InputLabelProps={{
         shrink: true,
