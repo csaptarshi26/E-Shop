@@ -8,6 +8,7 @@ import Message from '../components/Message'
 import Meta from '../components/Meta'
 import Rating from '../components/Rating'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../store/constants/productConstants'
+import { setModalStatus } from '../store/actions/appActions'
 
 const ProductScreen = () => {
   const params = useParams();
@@ -122,7 +123,7 @@ const ProductScreen = () => {
           <Row>
             <Col md={6}>
               <h2>Reviews</h2>
-              {product.reviews.length === 0 && <Message>No Reviews</Message>}
+              {product.reviews.length === 0 && <Message variant='info'>No Reviews</Message>}
               <ListGroup variant='flush'>
                 {product.reviews.map(review => (
                   <ListGroupItem key={review._id}>
@@ -135,7 +136,7 @@ const ProductScreen = () => {
 
                 <ListGroupItem>
                   <h2>Write a Customer Review</h2>
-                  {errorProductReview && <Message >{errorProductReview}</Message>}
+                  {errorProductReview && <Message variant='info'>{errorProductReview}</Message>}
                   {userInfo ? (
                     <Form onSubmit={submitHandler}>
                       <Form.Group controlId='rating'>
@@ -165,8 +166,8 @@ const ProductScreen = () => {
                       </Button>
                     </Form>
                   ) : (
-                    <Message>
-                      Please <Link to='login'> sign in  </Link> to write a review
+                    <Message variant='info'>
+                      Please <u onClick={()=> dispatch(setModalStatus(true))}> sign in  </u> to write a review
                     </Message>
                   )}
                 </ListGroupItem>

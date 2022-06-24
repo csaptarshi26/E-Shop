@@ -21,7 +21,7 @@ const Login = ({ setModalType }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const redirect = location.search ? location.search.split('=')[1] : '/'
+  const redirect = location.pathname; //location.search ? location.search.split('=')[1] : '/'
 
   const { loading, error, userInfo } = useSelector(state => state.userLogin)
   const [email, setEmail] = useState('admin@example.com');
@@ -33,7 +33,8 @@ const Login = ({ setModalType }) => {
       console.log(redirect);
       navigate(redirect)
     }
-  }, [userInfo, redirect, navigate])
+    console.log()
+  }, [userInfo, redirect, navigate,location])
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(login(email, password));
