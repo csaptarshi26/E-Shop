@@ -5,20 +5,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/actions/userActions';
 import { SearchBox } from '../SearchBox'
 import LoginDialog from '../dialog/LoginRegisterModal/LoginDialog';
-import { setModalStatus } from '../../store/actions/appActions';
+import { setSignUpModalStatus } from '../../store/actions/appActions';
+import AddressDialog from '../dialog/AddressModal/AddressDialog';
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { userInfo } = useSelector(state => state.userLogin)
-  const { openModal } = useSelector(state => state.app)
+  const {
+    openSignUpModal,
+    addressModal: {
+      openAddressModal,
+      modalType: addressModalType
+    }
+  } = useSelector(state => state.app)
 
   const logoutHandler = (e) => {
     dispatch(logout())
     navigate('/')
   }
   const signInHandler = () => {
-    dispatch(setModalStatus(true))
+    dispatch(setSignUpModalStatus(true))
   }
   return (
     <header>
@@ -57,9 +64,8 @@ const Header = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <LoginDialog open={openModal}>
-       
-      </LoginDialog>
+      <LoginDialog open={openSignUpModal} />
+      <AddressDialog open={openAddressModal} type={addressModalType} />
     </header >
   )
 }

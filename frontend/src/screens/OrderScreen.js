@@ -8,7 +8,7 @@ import { deliverOrder, getOrderDetails, payOrder } from '../store/actions/orderA
 import { Loader } from '../components/Loader';
 import Message from '../components/Message';
 import { ORDER_DELIVER_RESET, ORDER_PAY_RESET } from '../store/constants/orderConstants';
-import { setModalStatus } from '../store/actions/appActions';
+import { setSignUpModalStatus } from '../store/actions/appActions';
 
 
 export const OrderScreen = () => {
@@ -32,7 +32,7 @@ export const OrderScreen = () => {
   useEffect(() => {
     if (!userInfo) {
       //navigate('/login')      
-      dispatch(setModalStatus(true))
+      dispatch(setSignUpModalStatus(true))
     }
     const addPayPalScript = async () => {
       const { data: clientId } = await axios.get("/api/config/paypal");

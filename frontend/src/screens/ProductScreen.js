@@ -8,7 +8,7 @@ import Message from '../components/Message'
 import Meta from '../components/Meta'
 import Rating from '../components/Rating'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../store/constants/productConstants'
-import { setModalStatus } from '../store/actions/appActions'
+import { setSignUpModalStatus } from '../store/actions/appActions'
 
 const ProductScreen = () => {
   const params = useParams();
@@ -167,7 +167,7 @@ const ProductScreen = () => {
                     </Form>
                   ) : (
                     <Message variant='info'>
-                      Please <u onClick={()=> dispatch(setModalStatus(true))}> sign in  </u> to write a review
+                      Please <u onClick={()=> dispatch(setSignUpModalStatus(true))}> sign in  </u> to write a review
                     </Message>
                   )}
                 </ListGroupItem>

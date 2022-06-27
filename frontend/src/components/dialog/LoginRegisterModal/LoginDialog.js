@@ -18,7 +18,7 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Login from './Login';
 import Register from './Register';
-import { setModalStatus } from '../../../store/actions/appActions';
+import { setSignUpModalStatus } from '../../../store/actions/appActions';
 import { useDispatch } from 'react-redux';
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -30,7 +30,7 @@ export default function LoginDialog({ open }) {
 
 
   const handleClose = () => {
-    dispatch(setModalStatus(false))
+    dispatch(setSignUpModalStatus(false))
     setModalType('login')
   };
   const theme = useTheme();
@@ -42,12 +42,12 @@ export default function LoginDialog({ open }) {
     <React.Fragment>
       <Dialog
         fullScreen={fullScreen}
-        PaperProps={!fullScreen && {
+        PaperProps={fullScreen ? {} : ({
           style: {
             height: 'auto',
             width: '65vw'
           }
-        }}
+        })}
         open={open}
         onClose={handleClose}
       >

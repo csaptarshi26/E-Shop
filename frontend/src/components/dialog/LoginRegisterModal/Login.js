@@ -15,7 +15,7 @@ import { login } from '../../../store/actions/userActions';
 import Message from '../../Message';
 import { Loader } from '../../Loader';
 import { InputField } from '../../form/InputField'
-import { setModalStatus } from '../../../store/actions/appActions';
+import { setSignUpModalStatus } from '../../../store/actions/appActions';
 
 const Login = ({ setModalType }) => {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const Login = ({ setModalType }) => {
 
   useEffect(() => {
     if (userInfo) {
-      dispatch(setModalStatus(false))
+      dispatch(setSignUpModalStatus(false))
       console.log(redirect);
       navigate(redirect)
     }

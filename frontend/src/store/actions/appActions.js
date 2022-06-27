@@ -1,11 +1,12 @@
-import { CLOSE_SIGN_UP_MODAL, OPEN_SIGN_UP_MODAL } from "../constants/appConstant"
+import { CLOSE_ADDRESS_MODAL, CLOSE_SIGN_UP_MODAL, OPEN_ADDRESS_MODAL, OPEN_SIGN_UP_MODAL } from "../constants/appConstant"
 
-export const setModalStatus = (isOpen) => async (dispatch) => {
-  
-  if(isOpen){
-    dispatch({type : OPEN_SIGN_UP_MODAL})
-  }else{
-    dispatch({type : CLOSE_SIGN_UP_MODAL})
-  }
+export const setSignUpModalStatus = (isOpen) => async (dispatch) => {
+  let type = isOpen ? OPEN_SIGN_UP_MODAL : CLOSE_SIGN_UP_MODAL;
+  dispatch({ type: type })
+}
+
+export const setAddressModalStatus = (isOpen, modalType) => async (dispatch) => {
+  let type = isOpen ? OPEN_ADDRESS_MODAL : CLOSE_ADDRESS_MODAL;
+  dispatch({ type: type, payload: modalType })
 
 }

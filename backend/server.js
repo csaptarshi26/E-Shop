@@ -5,6 +5,7 @@ import productRoutes from './routes/productRoute.js';
 import userRoutes from './routes/userRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
+import addressRoutes from './routes/addressRoute.js';
 import colors from 'colors'
 import { errorHandler, notFound } from './middleware/errorMiddleWare.js';
 import path from 'path'
@@ -23,6 +24,7 @@ app.use(express.json())
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
+app.use('/api/address', addressRoutes)
 app.use('/api/upload', uploadRoutes)
 
 app.get('/api/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_ID))

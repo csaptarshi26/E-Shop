@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { addToCart, removeFromCart } from '../store/actions/cartActions';
 import Message from '../components/Message';
-import { setModalStatus } from '../store/actions/appActions';
+import { setSignUpModalStatus } from '../store/actions/appActions';
 
 const CartScreen = () => {
   const params = useParams();
@@ -39,7 +39,7 @@ const CartScreen = () => {
     if(userInfo){
       navigate('/shipping')
     }else{
-      dispatch(setModalStatus(true))
+      dispatch(setSignUpModalStatus(true))
     }
   }
 

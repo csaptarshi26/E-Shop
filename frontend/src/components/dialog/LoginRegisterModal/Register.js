@@ -14,7 +14,7 @@ import { FormContainer } from '../../FormContainer';
 import Message from '../../Message';
 import { Loader } from '../../Loader';
 import { InputField } from '../../form/InputField'
-import { setModalStatus } from '../../../store/actions/appActions';
+import { setSignUpModalStatus } from '../../../store/actions/appActions';
 
 import Link from '@mui/material/Link';
 
@@ -34,7 +34,7 @@ const Register = ({ setModalType }) => {
 
   useEffect(() => {
     if (userInfo) {
-      dispatch(setModalStatus(false))
+      dispatch(setSignUpModalStatus(false))
       navigate(redirect)
     }
   }, [userInfo, redirect, navigate])
