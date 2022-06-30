@@ -29,8 +29,7 @@ const Login = ({ setModalType }) => {
 
   useEffect(() => {
     if (userInfo) {
-      dispatch(setSignUpModalStatus(false))
-      console.log(redirect);
+      dispatch(setSignUpModalStatus(false));
       navigate(redirect)
     }
     console.log()

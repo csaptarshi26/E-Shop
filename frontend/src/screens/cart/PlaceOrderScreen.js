@@ -2,9 +2,11 @@ import React, { useEffect } from 'react'
 import { Button, Card, Col, Image, ListGroup, ListGroupItem, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import CheckoutSteps from '../components/CheckoutSteps';
-import Message from '../components/Message';
-import { createOrder } from '../store/actions/orderActions';
+import CheckoutSteps from '../../components/CheckoutSteps';
+import Message from '../../components/Message';
+import { getAddressById } from '../../store/actions/addressActions';
+import { createOrder } from '../../store/actions/orderActions';
+import { CartContainer } from './CartContainer';
 
 export const PlaceOrderScreen = () => {
   const dispatch = useDispatch();
@@ -13,9 +15,11 @@ export const PlaceOrderScreen = () => {
     return (Math.round(num * 100) / 100).toFixed(2)
   }
 
-  
+
   const { order, success, error } = useSelector(state => state.orderCreate);
   const { userInfo } = useSelector(state => state.userLogin);
+  const { address: selectedAddress } = useSelector(state => state.addressSelected);
+
 
   const cart = useSelector(state => ({ ...state.cart }))
 
@@ -35,8 +39,11 @@ export const PlaceOrderScreen = () => {
     if (!userInfo) {
       navigate('/')
     }
+    if (cart && userInfo) {
+      dispatch(getAddressById(cart.shippingAddress))
+    }
     // eslint-disable-next-line
-  }, [navigate, success,userInfo])
+  }, [navigate, success, userInfo])
 
   const placeOrderHandler = () => {
     dispatch(createOrder({
@@ -49,19 +56,19 @@ export const PlaceOrderScreen = () => {
       totalPrice: cart.totalPrice
     }))
   }
-  return (
+
+  const PlaceOrderContainer = () => (
     <>
-      <CheckoutSteps step1 step2 step3 step4 />
       <Row>
-        <Col md={8}>
+        <Col md={12}>
           <ListGroup variant='flush'>
             <ListGroupItem>
               <h2>Shipping</h2>
               <p>
                 <strong>Address : </strong>
-                {cart.shippingAddress.address}, {cart.shippingAddress.city}{' '}
-                {cart.shippingAddress.postalCode},{' '}
-                {cart.shippingAddress.country}
+                {selectedAddress.address}, {selectedAddress.city}{' '}
+                {selectedAddress.postalCode},{' '}
+                {selectedAddress.country}
               </p>
             </ListGroupItem>
 
@@ -99,56 +106,18 @@ export const PlaceOrderScreen = () => {
             </ListGroupItem>
           </ListGroup>
         </Col>
-
-        <Col md={4}>
-          <Card>
-            <ListGroup variant='flush'>
-              <ListGroupItem>
-                <h2>Order Summary</h2>
-              </ListGroupItem>
-
-              <ListGroupItem>
-                <Row>
-                  <Col>Items</Col>
-                  <Col>₹{cart.itemsPrice}</Col>
-                </Row>
-              </ListGroupItem>
-
-              <ListGroupItem>
-                <Row>
-                  <Col>Shipping</Col>
-                  <Col>₹{cart.shippingPrice}</Col>
-                </Row>
-              </ListGroupItem>
-
-              <ListGroupItem>
-                <Row>
-                  <Col>Tax</Col>
-                  <Col>₹{cart.taxPrice}</Col>
-                </Row>
-              </ListGroupItem>
-
-              <ListGroupItem>
-                <Row>
-                  <Col>Total</Col>
-                  <Col>₹{cart.totalPrice}</Col>
-                </Row>
-              </ListGroupItem>
-
-              <ListGroup.Item>
-                {error && <Message >{error}</Message>}
-              </ListGroup.Item>
-
-              <ListGroupItem>
-                <Button type='button' className='btn-block' disabled={cart.cartItems === 0}
-                  onClick={placeOrderHandler}>
-                  Place Order
-                </Button>
-              </ListGroupItem>
-            </ListGroup>
-          </Card>
-        </Col>
       </Row>
+    </>
+  )
+  const ButtonContainer = () => (
+    <Button type='button' className='btn-block' disabled={cart.cartItems === 0}
+      onClick={placeOrderHandler}>
+      Place Order
+    </Button>
+  )
+  return (
+    <>
+      <CartContainer container={<PlaceOrderContainer />} button={<ButtonContainer />} />
     </>
   )
 }

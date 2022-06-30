@@ -9,6 +9,16 @@ const getMyAddress = asyncHandler(async (req, res) => {
   res.json(address);
 })
 
+
+//@desc Fetch user address by id
+//@route GET /api/address/:id
+//@access private
+const getMyAddressById = asyncHandler(async (req, res) => {
+  const address = await Address.findById(req.params.id);
+  res.json(address);
+})
+
+
 //@desc Create user address
 //@route POST /api/address
 //@access private
@@ -48,7 +58,10 @@ const createMyAddress = asyncHandler(async (req, res) => {
 })
 
 
+
+
 export {
   getMyAddress,
-  createMyAddress
+  createMyAddress,
+  getMyAddressById
 }
