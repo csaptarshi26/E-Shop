@@ -22,7 +22,6 @@ export const AddressCard = ({ selectedAddress, setSelectedAddress }) => {
           <>
             <Button
               type="submit"
-              fullWidth
               style={{ bgcolor: 'secondary.main' }}
               variant="outlined"
               onClick={() => {
@@ -37,7 +36,7 @@ export const AddressCard = ({ selectedAddress, setSelectedAddress }) => {
               {addressList.map(address => (
                 <Grid item sx={12} sm={12} md={6} key={address._id}>
                   <Card
-                    sx={{ marginTop: 1, marginBottom: 1, height: '200px' }}
+                    sx={{ marginTop: 1, marginBottom: 1, height: '200px',marginRight:1,marginLeft:1 }}
                     onClick={() => setSelectedAddress(address._id)}
                     style={{ border: selectedAddress === address._id ? '1px solid black' : '' }}
                   >

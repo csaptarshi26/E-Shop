@@ -1,9 +1,9 @@
 import express from "express";
-import { createMyAddress, getMyAddress, getMyAddressById } from "../controllers/addressController.js";
+import { createMyAddress, deleteAddress, getMyAddress, getMyAddressById } from "../controllers/addressController.js";
 import { protect } from "../middleware/authMiddleware.js";
 const router = express.Router();
 
-router.route('/:id').get(protect, getMyAddressById);
+router.route('/:id').get(protect, getMyAddressById).delete(protect,deleteAddress);
 
 router.route('/')
   .get(protect, getMyAddress)

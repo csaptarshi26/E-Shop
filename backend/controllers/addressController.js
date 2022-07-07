@@ -58,10 +58,26 @@ const createMyAddress = asyncHandler(async (req, res) => {
 })
 
 
+//@desc Delete address
+//@route DELETE /api/address/:id
+//@access Private
+const deleteAddress = asyncHandler(async (req, res) => {
+  const address = await Address.findById(req.params.id);
+  if (address) {
+    await address.remove();
+    res.json({ message: 'Address Removed' });
+  } else {
+    res.status(404)
+    throw new Error('Address not found')
+  }
+})
+
+
 
 
 export {
   getMyAddress,
   createMyAddress,
-  getMyAddressById
+  getMyAddressById,
+  deleteAddress
 }
