@@ -6,7 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setAddressModalStatus, setSignUpModalStatus } from '../../../store/actions/appActions';
-import { addMyAddress } from '../../../store/actions/addressActions';
+import { addMyAddress, getMyAddressList } from '../../../store/actions/addressActions';
 import { InputField } from '../../form/InputField';
 import React from 'react'
 
@@ -15,15 +15,15 @@ export default function AddressDialog({ open, type }) {
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState('md');
 
-  const [name, setName] = useState('saptarshi');
-  const [mobileNum, setMobileNum] = useState('1234');
-  const [address, setAddress] = useState('43 s v road');
-  const [locality, setLocality] = useState('birati');
-  const [city, setCity] = useState('kolkata');
-  const [state, setState] = useState('wb');
+  const [name, setName] = useState('');
+  const [mobileNum, setMobileNum] = useState('');
+  const [address, setAddress] = useState('');
+  const [locality, setLocality] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
   const [landmark, setLandmark] = useState('');
-  const [postalCode, setPostalCode] = useState('700051');
-  const [country, setCountry] = useState('India');
+  const [postalCode, setPostalCode] = useState('');
+  const [country, setCountry] = useState('');
 
 
   const handleClose = () => {
@@ -45,7 +45,7 @@ export default function AddressDialog({ open, type }) {
       postalCode,
       country
     }))
-
+    dispatch(getMyAddressList())
     handleClose();
   }
 
