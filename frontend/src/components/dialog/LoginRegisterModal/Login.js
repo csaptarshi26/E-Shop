@@ -15,13 +15,13 @@ import { login } from '../../../store/actions/userActions';
 import Message from '../../Message';
 import { Loader } from '../../Loader';
 import { InputField } from '../../form/InputField'
-import { setModalStatus } from '../../../store/actions/appActions';
+import { setSignUpModalStatus } from '../../../store/actions/appActions';
 
 const Login = ({ setModalType }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const redirect = location.search ? location.search.split('=')[1] : '/'
+  const redirect = location.pathname; //location.search ? location.search.split('=')[1] : '/'
 
   const { loading, error, userInfo } = useSelector(state => state.userLogin)
   const [email, setEmail] = useState('admin@example.com');
@@ -29,11 +29,11 @@ const Login = ({ setModalType }) => {
 
   useEffect(() => {
     if (userInfo) {
-      dispatch(setModalStatus(false))
-      console.log(redirect);
+      dispatch(setSignUpModalStatus(false));
       navigate(redirect)
     }
-  }, [userInfo, redirect, navigate])
+    console.log()
+  }, [userInfo, redirect, navigate,location])
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(login(email, password));

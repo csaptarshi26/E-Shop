@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 import { Button, Col, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { savePaymentMethod } from '../store/actions/cartActions';
-import CheckoutSteps from '../components/CheckoutSteps';
-import { FormContainer } from '../components/FormContainer';
+import { savePaymentMethod } from '../../store/actions/cartActions';
+import { CartContainer } from './CartContainer';
 
 export const PaymentScreen = () => {
   const dispatch = useDispatch();
@@ -28,11 +27,11 @@ export const PaymentScreen = () => {
     dispatch(savePaymentMethod(paymentMethod));
     navigate('/placeorder')
   }
-  return (
-    <FormContainer>
-      <CheckoutSteps step1 step2 step3 />
+
+  const PaymentContainer = () => (
+    <>
       <h1>Payment Method</h1>
-      <Form onSubmit={submitHandler}>
+      <Form onSubmit={submitHandler} id='payment-form'>
         <Form.Group>
           <Form.Label as='legend'>Select Method</Form.Label>
           <Col>
@@ -55,11 +54,16 @@ export const PaymentScreen = () => {
             ></Form.Check>
           </Col>
         </Form.Group>
-
-        <Button type='submit' variant='primary'>
-          Continue
-        </Button>
       </Form>
-    </FormContainer>
+    </>
+  )
+
+  const ButtonContainer = () => (
+    <Button type='submit' className='btn-clock' form='payment-form' variant='primary'>
+      Continue
+    </Button>
+  )
+  return (
+    <CartContainer container={<PaymentContainer />} button={ <ButtonContainer />} />
   )
 }

@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from "redux";
+import { addMyAddressReducer, addressListReducer, addressSelectedReducer } from './reducers/addressReducer';
 import { appReducer } from './reducers/appReducer';
 import { cartReducer } from './reducers/cartReducers';
 import { orderCreateReducer, orderDeliverReducer, orderDetailsReducer, orderListMyReducer, orderListReducer, orderPayReducer } from './reducers/orderReducers';
@@ -8,7 +9,7 @@ import { userLoginReducer, userRegisterReducer, userDetailsReducer, userUpdatePr
 
 const cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [];
 const userInfo = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
-const shippingAddress = localStorage.getItem('shippingAddress') ? JSON.parse(localStorage.getItem('shippingAddress')) : {};
+const shippingAddress = localStorage.getItem('shippingAddress') ? JSON.parse(localStorage.getItem('shippingAddress')) : '';
 const initialState = {
     cart: { cartItems, shippingAddress },
     userLogin: { userInfo }
@@ -22,7 +23,11 @@ const reducer = combineReducers({
     productReviewCreate: productReviewCreateReducer,
     productTopRated: productTopRatedReducer,
 
-    app:appReducer,
+    addressList: addressListReducer,
+    addMyAddress: addMyAddressReducer,
+    addressSelected : addressSelectedReducer,
+
+    app: appReducer,
     cart: cartReducer,
 
     userLogin: userLoginReducer,

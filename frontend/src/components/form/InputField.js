@@ -2,10 +2,11 @@ import React from 'react'
 import TextField from '@mui/material/TextField';
 
 
-export const InputField = ({ value,type, onChange, label, autoFocus }) => {
+export const InputField = ({ value,type, onChange, label, autoFocus,...rest }) => {
   return (
 
     <TextField
+      
       margin="normal"
       type={type ? type : 'text'}
       fullWidth
@@ -17,6 +18,7 @@ export const InputField = ({ value,type, onChange, label, autoFocus }) => {
       InputLabelProps={{
         shrink: true,
       }}
+      {...rest}
       autoFocus={autoFocus}
     />
   )
