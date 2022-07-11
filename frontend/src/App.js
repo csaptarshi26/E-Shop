@@ -26,7 +26,7 @@ function App() {
     <Router>
       <Header />
       <main >
-        <Container maxWidth={false} sx={{ paddingTop: 1 }} style={{ background: '#f1f3f6' }}>
+        <Container maxWidth={false} sx={{ paddingTop: 1 }} style={{ background: '#f1f3f6',height:'calc(100vh - 70px)' }}>
           <Routes>
             <Route path="/" element={<HomeScreen />} />
             <Route path="/page/:pageNumber" element={<HomeScreen />} />
@@ -64,7 +64,6 @@ function App() {
           </Routes>
         </Container>
       </main>
-      <Footer />
     </Router>
   );
 }

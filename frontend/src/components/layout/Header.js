@@ -28,8 +28,8 @@ const Header = () => {
     dispatch(setSignUpModalStatus(true))
   }
   return (
-    <header>
-      <Navbar bg="dark" variant='dark' expand="lg" collapseOnSelect>
+    <header >
+      <Navbar bg="dark" variant='dark' expand="lg" style={{height:'70px'}} collapseOnSelect>
         <Container>
           <Nav.Link as={Link} to='/'>
             <Navbar.Brand >E-Shop</Navbar.Brand>

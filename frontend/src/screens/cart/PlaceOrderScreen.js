@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
-import { Button, Card, Col, Image, ListGroup, ListGroupItem, Row } from 'react-bootstrap';
+import { useEffect } from 'react';
+import { Button, Col, Image, ListGroup, ListGroupItem, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import CheckoutSteps from '../../components/CheckoutSteps';
 import Message from '../../components/Message';
 import { getAddressById } from '../../store/actions/addressActions';
 import { createOrder } from '../../store/actions/orderActions';

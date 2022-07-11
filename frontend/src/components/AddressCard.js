@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setAddressModalStatus } from '../store/actions/appActions';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
-import { Image } from 'react-bootstrap';
 import { Loader } from './Loader'
 import { printAddress } from './utils/App.utils';
 
@@ -15,6 +14,7 @@ export const AddressCard = ({ selectedAddress, setSelectedAddress }) => {
 
   const { loading, error, addressList } = useSelector(state => state.addressList)
 
+  console.log(addressList)
   return (
     <>
       {loading ? <Loader /> : (
@@ -61,7 +61,7 @@ export const AddressCard = ({ selectedAddress, setSelectedAddress }) => {
             <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center"
               style={{ minHeight: '70vh', textAlign: 'center' }}>
               <Grid item xs={3}>
-                <div><Image src='/images/empty_address.png' rounded /></div>
+                <div><img src='/images/empty_address.png' /></div>
                 <strong>No Addresses found in your account!</strong>
                 <p>Add a delivery address.</p>
                 <Button type="button"

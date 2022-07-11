@@ -1,20 +1,18 @@
-import { useEffect, useState } from 'react';
-import { Col, Form, Row } from 'react-bootstrap';
-import Button from '@mui/material/Button';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { Grid } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import { Grid } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import { register } from '../../../store/actions/userActions';
-import { FormContainer } from '../../FormContainer';
-import Message from '../../Message';
-import { Loader } from '../../Loader';
-import { InputField } from '../../form/InputField'
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { setSignUpModalStatus } from '../../../store/actions/appActions';
+import { register } from '../../../store/actions/userActions';
+import { InputField } from '../../form/InputField';
+import { Loader } from '../../Loader';
+import Message from '../../Message';
 
 import Link from '@mui/material/Link';
 

@@ -1,16 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { saveShippingAddress } from '../../store/actions/cartActions';
-import CheckoutSteps from '../../components/CheckoutSteps';
-import { FormContainer } from '../../components/FormContainer';
 import { getMyAddressList } from '../../store/actions/addressActions';
+import { saveShippingAddress } from '../../store/actions/cartActions';
 
-import { setAddressModalStatus } from '../../store/actions/appActions';
-import { AddressCard } from '../../components/AddressCard';
 import { Box, Container } from '@mui/material';
-import { CartContainer } from './CartContainer';
 import { Button } from 'react-bootstrap';
+import { AddressCard } from '../../components/AddressCard';
+import { CartContainer } from './CartContainer';
 
 export const ShippingScreen = () => {
   const dispatch = useDispatch();
@@ -18,7 +15,6 @@ export const ShippingScreen = () => {
 
   const [selectedAddress, setSelectedAddress] = useState('');
 
-  const { shippingAddress } = useSelector(state => state.cart);
   const { userInfo } = useSelector(state => state.userLogin)
 
 
@@ -29,7 +25,7 @@ export const ShippingScreen = () => {
       dispatch(getMyAddressList())
     }
 
-  }, [userInfo, dispatch,])
+  }, [userInfo, dispatch,navigate])
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -47,7 +43,7 @@ export const ShippingScreen = () => {
   )
   
   const ButtonContainer = () => (
-    <Button type='button' className='btn-clock' disabled={selectedAddress == ''}
+    <Button type='button' className='btn-clock' disabled={selectedAddress === ''}
       onClick={submitHandler}>Continue
     </Button>
   )
